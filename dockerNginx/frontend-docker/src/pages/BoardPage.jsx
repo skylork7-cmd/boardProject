@@ -12,7 +12,7 @@ function BoardPage() {
 
   return (
     <div>
-      <h1>Board List</h1>
+      <h1>Board List...</h1>
 
       <ul>
         {boards.map((board) => (
