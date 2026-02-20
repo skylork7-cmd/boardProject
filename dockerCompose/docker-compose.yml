@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: rbd_becom
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  backend:
+    build: ./backend-docker
+    container_name: backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    restart: always   # ✅ 추가
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/rbd_becom?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1234
+
+  frontend:
+    build: ./frontend-docker
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+volumes:
+  mysql-data:

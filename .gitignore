@@ -1,0 +1,17 @@
+# IntelliJ
+.idea/
+*.iml
+
+# Node
+node_modules/
+dist/
+
+# Spring
+target/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+mysql-data/
