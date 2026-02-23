@@ -16,7 +16,7 @@ function BoardPage() {
 
       <ul>
         {boards.map((board) => (
-          <li key={board.boTable}>{board.boTable}</li>
+          <li key={board.boTable}>{board.grId}</li>
         ))}
       </ul>
     </div>
